@@ -4,6 +4,7 @@ import { useAppDispatch } from "./app/hooks";
 import { fetchItems } from "./features/items/itemsSlice";
 import { ItemsTable } from "./components/domain/item/table/ItemsTable";
 import { Typography } from "@mui/material";
+import { SelectedItemPanel } from "./components/domain/item/panel/SelectedItemPanel";
 
 /**
  * Application to display items and manage the selected item using a redux store.
@@ -24,6 +25,7 @@ export const App = (): React.JSX.Element => {
     <div className="App">
       <Typography variant="h1">Items Table</Typography>
       <ItemsTable />
+      <SelectedItemPanel />
     </div>
   );
 };

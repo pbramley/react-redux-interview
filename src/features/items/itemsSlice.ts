@@ -5,10 +5,12 @@ const FETCH_ITEMS_URL = 'http://localhost:8080/items';
 
 /**
  * Definition of the state represented in the items slice. 
- * In particular, will contain the list of items loaded from the server.
+ * In particular, will contain the list of items loaded from the server, and the GUID
+ * of the selected item (or null).
  */
 interface ItemsState {
   items: Item[];
+  selectedItemGUID: string | null;
 }
 
 /**
@@ -16,6 +18,7 @@ interface ItemsState {
  */
 const initialState: ItemsState = {
   items: [],
+  selectedItemGUID: null,
 };
 
 /**
@@ -38,7 +41,11 @@ export const fetchItems = createAsyncThunk<Item[]>('items/fetch', async () => {
 export const itemsSlice = createSlice({
   name: 'items',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedItem: (state, action: PayloadAction<string>) => {
+      state.selectedItemGUID = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchItems.fulfilled, (state, action: PayloadAction<Item[]>) => {
         state.items = action.payload;
@@ -46,4 +53,5 @@ export const itemsSlice = createSlice({
   }
 });
 
+export const { setSelectedItem } = itemsSlice.actions;
 export default itemsSlice.reducer;
