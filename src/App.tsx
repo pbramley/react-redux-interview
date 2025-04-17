@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
 import './App.css';
+import { useAppDispatch, useAppSelector } from './app/hooks';
+import { fetchItems } from './features/items/itemsSlice';
 
-function App() {
+/**
+ * Application to display items and manage the selected item using a redux store.
+ * @returns 
+ */
+export const App = (): React.JSX.Element => {
+  const dispatch = useAppDispatch();
+  const items = useAppSelector(state => state.items.items);
+
+  /**
+   * Dispatch the fetch items async thunk to invoke loading the item data.
+   */
+  useEffect(() => {
+    dispatch(fetchItems());
+  }, [dispatch]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        {JSON.stringify(items)}
     </div>
   );
 }
