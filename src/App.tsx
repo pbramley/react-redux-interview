@@ -1,18 +1,20 @@
-import React, { useEffect } from 'react';
-import './App.css';
-import { useAppDispatch, useAppSelector } from './app/hooks';
-import { fetchItems } from './features/items/itemsSlice';
+import React, { useEffect } from "react";
+import "./App.css";
+import { useAppDispatch } from "./app/hooks";
+import { fetchItems } from "./features/items/itemsSlice";
+import { ItemsTable } from "./components/domain/item/table/ItemsTable";
+import { Typography } from "@mui/material";
 
 /**
  * Application to display items and manage the selected item using a redux store.
- * @returns 
+ * @returns
  */
 export const App = (): React.JSX.Element => {
   const dispatch = useAppDispatch();
-  const items = useAppSelector(state => state.items.items);
 
   /**
-   * Dispatch the fetch items async thunk to invoke loading the item data.
+   * Dispatch the fetch items async thunk to invoke loading the item data
+   * from the endpoint.
    */
   useEffect(() => {
     dispatch(fetchItems());
@@ -20,9 +22,10 @@ export const App = (): React.JSX.Element => {
 
   return (
     <div className="App">
-        {JSON.stringify(items)}
+      <Typography variant="h1">Items Table</Typography>
+      <ItemsTable />
     </div>
   );
-}
+};
 
 export default App;

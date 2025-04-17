@@ -10,7 +10,7 @@ export const store = configureStore({
     }
 });
 
-// Use types for convenience and type safety.
+// Types here are added for convenience and type safety.
 export type AppStore = typeof store;
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
