@@ -1,3 +1,7 @@
 .table-row:hover {
     cursor: pointer
 }
+
+.selected-row {
+    background-color: blue;
+}

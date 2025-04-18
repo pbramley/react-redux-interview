@@ -2,6 +2,7 @@ import TableRow from "@mui/material/TableRow";
 import { Item } from "../../../../../types/item";
 import TableCell from "@mui/material/TableCell";
 import styles from "./ItemsRow.module.css";
+import { useAppSelector } from "../../../../../app/hooks";
 
 /**
  * Props to be provided to the {@link ItemsRow} row component.
@@ -29,9 +30,17 @@ export const ItemsRow = ({
   item,
   onSelectItem,
 }: ItemsRowProps): React.JSX.Element => {
+  // Retrieve the state of the selected item from the redux store for the sake of styling.
+  const selectedItemGUID = useAppSelector(
+    (state) => state.items.selectedItemGUID
+  );
+
+  const isRowSelected = selectedItemGUID === item.guid;
+
   return (
     <TableRow
-      className={styles["table-row"]}
+      className={`${styles["table-row"]} ${
+        isRowSelected ? styles["selected-row"] : ""}`}
       hover={true}
       onClick={() => onSelectItem?.(item.guid)}
     >
