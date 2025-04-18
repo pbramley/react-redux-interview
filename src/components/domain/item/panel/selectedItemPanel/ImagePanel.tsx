@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../../../../app/hooks";
-import styles from './ImagePanel.module.css';
+import styles from "./ImagePanel.module.css";
 
 const ITEM_IMAGE_URL = "http://localhost:8080/image";
 
@@ -15,11 +15,11 @@ export const ImagePanel = (): React.JSX.Element => {
   return (
     <>
       {!selectedItemGUID && <div>No image to show.</div>}
-      {selectedItemGUID && 
-      <div className={styles['image-container']}> 
-        <img src={imageUrl} alt={"Selected item"} />
-      </div>     
-}
+      {selectedItemGUID && (
+        <div className={styles["image-container"]}>
+          <img src={imageUrl} alt={"Selected item"} />
+        </div>
+      )}
     </>
   );
 };

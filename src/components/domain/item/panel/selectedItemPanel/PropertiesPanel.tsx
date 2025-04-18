@@ -14,7 +14,7 @@ export const PropertiesPanel = (): React.JSX.Element => {
     (state) => state.items.selectedItemGUID
   );
   const items = useAppSelector((state) => state.items.items);
-  const selectedItem = items.find((item) => item.guid === selectedItemGUID);
+  const selectedItem = items?.find((item) => item.guid === selectedItemGUID);
   const isPropertiesEmpty = !selectedItem || !selectedItem?.properties;
 
   return (
@@ -28,7 +28,6 @@ export const PropertiesPanel = (): React.JSX.Element => {
           {Object.entries(selectedItem.properties)?.map(
             ([key, value], index) => {
               const alignRight = isNumeric(value) || isDate(value);
-                console.log('Should align right: ' + alignRight);
               return (
                 <ListItem key={key} className={styles['property']}>
                   <span className={styles["property-key"]}>{key}</span>

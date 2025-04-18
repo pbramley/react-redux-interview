@@ -1,0 +1,16 @@
+.empty-state-content {
+    text-align: center;
+  }
+
+.empty-message {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--color-text-primary);
+    margin-bottom: 8px;
+  }
+
+  .empty-instructions {
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+  }

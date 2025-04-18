@@ -5,6 +5,7 @@ import { ItemsTable } from "./components/domain/item/table/ItemsTable";
 import { Paper, Typography } from "@mui/material";
 import { SelectedItemTabPanel } from "./components/domain/item/panel/SelectedItemPanel";
 import styles from "./App.module.css";
+import { EmptySelectionState } from "./components/domain/item/emptyState/EmptySelectionState";
 
 /**
  * Application to display items and manage the selected item using a redux store.
@@ -35,17 +36,7 @@ export const App = (): React.JSX.Element => {
 
           {!selectedItemGUID && (
             <Paper className={styles['empty-selected-items-panel']}>
-              <div className={styles['empty-state-content']}>
-                <Typography variant={'h6'} className={styles['empty-message']}>
-                  No item selected!
-                </Typography>
-                <Typography
-                  variant={'body2'}
-                  className={styles['empty-instructions']}
-                >
-                  Start by clicking a row to select an item.
-                </Typography>
-              </div>
+              <EmptySelectionState />
             </Paper>
           )}
 
