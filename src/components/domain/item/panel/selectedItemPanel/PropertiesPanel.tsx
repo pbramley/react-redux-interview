@@ -1,7 +1,10 @@
 import List from "@mui/material/List";
 import { useAppSelector } from "../../../../../app/hooks";
 import styles from "./PropertiesPanel.module.css";
-import ListItemText from "@mui/material/ListItemText";
+import ListItem from "@mui/material/ListItem";
+
+const isNumeric = (val: string) => !isNaN(Number(val));
+const isDate = (val: string) => !isNaN(Date.parse(val));
 
 /**
  * Tab content panel to display additional properties for the selected item.
@@ -16,13 +19,30 @@ export const PropertiesPanel = (): React.JSX.Element => {
 
   return (
     <div className={styles["properties-panel"]}>
-      {isPropertiesEmpty && <div>No properties to show.</div>}
+      {isPropertiesEmpty && (
+        <div className={styles['empty-message']}>No properties to show.</div>
+      )}
 
       {selectedItem?.properties && (
         <List>
-          {Object.entries(selectedItem.properties)?.map((value, index) => (
-            <ListItemText key={value[0]} primary={value[0]} secondary={value[1]} />
-          ))}
+          {Object.entries(selectedItem.properties)?.map(
+            ([key, value], index) => {
+              const alignRight = isNumeric(value) || isDate(value);
+                console.log('Should align right: ' + alignRight);
+              return (
+                <ListItem key={key} className={styles['property']}>
+                  <span className={styles["property-key"]}>{key}</span>
+                  <span
+                    className={`${styles['property-value']} ${
+                      alignRight ? styles['right-aligned'] : ""
+                    }`}
+                  >
+                    {value}
+                  </span>
+                </ListItem>
+              );
+            }
+          )}
         </List>
       )}
     </div>

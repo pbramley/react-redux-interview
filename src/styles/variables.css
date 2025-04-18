@@ -1,6 +1,7 @@
 :root {
-    --primary-color: #1976d2;  /* Blue */
-    --secondary-color: #AED0EB; /* Pink */
+    --primary-color: #1976d2;
+    --secondary-color: #AED0EB;
+    --warning-color: #e64c49;
     --background-color: #f4f6f8; /* Light Grey */
     --text-color: #333; /* Dark Text */
   }

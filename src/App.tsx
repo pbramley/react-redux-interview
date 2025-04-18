@@ -25,14 +25,30 @@ export const App = (): React.JSX.Element => {
   }, [dispatch]);
 
   return (
-    <div className={styles['app-container']}>
+    <div className={styles["app-container"]}>
       <Typography variant="h1">Items Table</Typography>
       <Paper>
-        <div className={styles['items-content']}>
-          <Paper className={styles['items-table']}>
+        <div className={styles["items-content"]}>
+          <Paper className={styles["items-table"]}>
             <ItemsTable />
           </Paper>
-          
+
+          {!selectedItemGUID && (
+            <Paper className={styles['empty-selected-items-panel']}>
+              <div className={styles['empty-state-content']}>
+                <Typography variant={'h6'} className={styles['empty-message']}>
+                  No item selected!
+                </Typography>
+                <Typography
+                  variant={'body2'}
+                  className={styles['empty-instructions']}
+                >
+                  Start by clicking a row to select an item.
+                </Typography>
+              </div>
+            </Paper>
+          )}
+
           {selectedItemGUID && (
             <Paper className={styles['selected-items-panel']}>
               <SelectedItemTabPanel />

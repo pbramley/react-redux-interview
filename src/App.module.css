@@ -11,12 +11,29 @@
 }
 
 .items-table {
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.selected-items-panel, .empty-selected-items-panel {
     flex-basis: 33%;
     flex-grow: 0;
     max-width: 100%;
 }
 
-.selected-items-panel {
-    flex-grow: 1;
-    max-width: 100%;
-}
+.empty-state-content {
+    text-align: center;
+  }
+
+.empty-message {
+    font-weight: 600;
+    font-size: 1.25rem; /* Emphasize the main message */
+    color: var(--color-text-primary);
+    margin-bottom: 8px;
+  }
+
+  .empty-instructions {
+    font-weight: 400;
+    font-size: 0.875rem; /* Slightly smaller text for the instructions */
+    color: var(--color-text-primary);
+  }
