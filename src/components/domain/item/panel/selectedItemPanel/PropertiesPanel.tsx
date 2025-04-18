@@ -1,7 +1,7 @@
 import List from "@mui/material/List";
 import { useAppSelector } from "../../../../../app/hooks";
 import styles from "./PropertiesPanel.module.css";
-import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 
 /**
  * Tab content panel to display additional properties for the selected item.
@@ -20,10 +20,8 @@ export const PropertiesPanel = (): React.JSX.Element => {
 
       {selectedItem?.properties && (
         <List>
-          {Object.entries(selectedItem.properties)?.map((key, value) => (
-            <ListItem>
-              {key}: {value}
-            </ListItem>
+          {Object.entries(selectedItem.properties)?.map((value, index) => (
+            <ListItemText key={value[0]} primary={value[0]} secondary={value[1]} />
           ))}
         </List>
       )}

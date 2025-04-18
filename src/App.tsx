@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import { useAppDispatch } from "./app/hooks";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { fetchItems } from "./features/items/itemsSlice";
 import { ItemsTable } from "./components/domain/item/table/ItemsTable";
-import { Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { SelectedItemTabPanel } from "./components/domain/item/panel/SelectedItemPanel";
 import styles from "./App.module.css";
 
@@ -13,6 +13,9 @@ import styles from "./App.module.css";
  */
 export const App = (): React.JSX.Element => {
   const dispatch = useAppDispatch();
+  const selectedItemGUID = useAppSelector(
+    (state) => state.items.selectedItemGUID
+  );
 
   /**
    * Dispatch the fetch items async thunk to invoke loading the item data
@@ -23,12 +26,21 @@ export const App = (): React.JSX.Element => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={styles['app-container']}>
       <Typography variant="h1">Items Table</Typography>
-      <div className={styles["items-content"]}>
-        <ItemsTable />
-        <SelectedItemTabPanel />
-      </div>
+      <Paper>
+        <div className={styles['items-content']}>
+          <Paper className={styles['items-table']}>
+            <ItemsTable />
+          </Paper>
+          
+          {selectedItemGUID && (
+            <Paper className={styles['selected-items-panel']}>
+              <SelectedItemTabPanel />
+            </Paper>
+          )}
+        </div>
+      </Paper>
     </div>
   );
 };

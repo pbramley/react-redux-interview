@@ -3,5 +3,5 @@
 }
 
 .selected-row {
-    background-color: blue;
+    background-color: var(--secondary-color);
 }
