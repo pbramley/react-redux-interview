@@ -1,3 +1,5 @@
-.table-header {
+/* Required to override the CSS specificity of mui headers. */
+:global(.MuiTableCell-root).table-header {
     font-weight: bold;
+    color: var(--color-text-primary);
 }

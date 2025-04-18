@@ -46,7 +46,7 @@ export const ItemsRow = ({
     >
       <TableCell>{item.guid}</TableCell>
       <TableCell>{item.name}</TableCell>
-      <TableCell>{item.path}</TableCell>
+      <TableCell>{Array.isArray(item.path) ? item.path.join("/") : ''}</TableCell>
     </TableRow>
   );
 };

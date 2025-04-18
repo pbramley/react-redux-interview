@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "./App.css";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { fetchItems } from "./features/items/itemsSlice";
 import { ItemsTable } from "./components/domain/item/table/ItemsTable";
